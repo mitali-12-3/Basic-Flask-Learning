@@ -1,21 +1,13 @@
-from flask import Flask, request
-app= Flask(__name__)
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return 'Hello Bitches! I am trying to learn shit'
+    return render_template("home.html")
 
-@app.route("/about")
-def about():
-    return 'About me? Bitches'
-
-@app.route("/contact")
-def contact():
-    return 'Bitch Pleaseeeeeee! Lamborghini Keysss'
-
-@app.route("/submit",methods=["GET","POST"])
-def submit():
-    if request.method=="POST":
-        return "You unemployed bitch sent me stuff"
-    else:
-        return "What you looking at mf?"
+@app.route("/submit", methods=["POST"])
+def login():
+    username= request.form.get("username")
+    password= request.form.get("password")
+    
